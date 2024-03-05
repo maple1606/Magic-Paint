@@ -138,6 +138,7 @@
     <ClCompile Include="WhiteBoard.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="constant.h" />
     <ClInclude Include="MainControl.h" />
     <ClInclude Include="WhiteBoard.h" />
   </ItemGroup>

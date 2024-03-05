@@ -35,5 +35,8 @@
     <ClInclude Include="WhiteBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -16,7 +16,7 @@ bool MainControl::init() {
         return false;
     }
 
-    window = glfwCreateWindow(1500, 960, "MS Paint Clone", nullptr, nullptr);
+    window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "MS Paint Clone", nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window" << std::endl;
         glfwTerminate();

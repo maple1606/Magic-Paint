@@ -5,6 +5,7 @@
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
 #include "WhiteBoard.h"
+#include "constant.h"
 #include<iostream>
 
 class MainControl

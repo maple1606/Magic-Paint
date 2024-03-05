@@ -1,0 +1,7 @@
+#ifndef CONSTANT_H_INCLUDED
+#define CONSTANT_H_INCLUDED
+
+const int SCREEN_WIDTH = 1500;
+const int SCREEN_HEIGHT = 900;
+
+#endif // CONSTANT_H_INCLUDED
