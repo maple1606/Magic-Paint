@@ -4,7 +4,7 @@
 
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
-#include "WhiteBoard.h"
+#include "Canvas.h"
 #include "constant.h"
 #include<iostream>
 
@@ -23,7 +23,7 @@ private:
     GLFWwindow* window;
     bool quit;
 
-    WhiteBoard* whiteBoard;
+    Canvas* canvas;
 };
 
 #endif // MAINCONTROL_H_INCLUDED

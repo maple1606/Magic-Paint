@@ -24,7 +24,10 @@
     <ClCompile Include="MainControl.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
-    <ClCompile Include="WhiteBoard.cpp">
+    <ClCompile Include="Canvas.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Brush.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +35,16 @@
     <ClInclude Include="MainControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WhiteBoard.h">
+    <ClInclude Include="Canvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Brush.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

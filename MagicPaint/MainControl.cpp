@@ -3,7 +3,7 @@
 MainControl::MainControl() {
     quit = false;
     window = NULL;
-    whiteBoard = NULL;
+    canvas = NULL;
 }
 
 MainControl::~MainControl() {
@@ -40,14 +40,12 @@ bool MainControl::init() {
         return false;
     }
 
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-
-    whiteBoard = new WhiteBoard();
+    canvas = new Canvas();
     return true;
 }
 
 void MainControl::setMode() {
-    whiteBoard->run(window);
+    canvas->display(window);
 }
 
 void MainControl::close() {

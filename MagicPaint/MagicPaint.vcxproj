@@ -133,14 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Brush.cpp" />
     <ClCompile Include="MagicPaint.cpp" />
     <ClCompile Include="MainControl.cpp" />
-    <ClCompile Include="WhiteBoard.cpp" />
+    <ClCompile Include="Canvas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Brush.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="constant.h" />
     <ClInclude Include="MainControl.h" />
-    <ClInclude Include="WhiteBoard.h" />
+    <ClInclude Include="Canvas.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
