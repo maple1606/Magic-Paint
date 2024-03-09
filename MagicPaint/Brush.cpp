@@ -3,17 +3,17 @@
 #include<iostream>
 
 Brush::Brush(Color** colors) {
-	this->colors = colors;
+    this->colors = colors;
 }
 
 void Brush::setColor(int x, int y, int zoom, Color color) {
-	struct Color newColor = { color.r, color.g, color.b, color.a };
-	colors[x][y] = newColor;
+    struct Color newColor = { color.r, color.g, color.b, color.a };
+    colors[x][y] = newColor;
     floodfill(x, y, x, y, zoom, color);
 }
 
 Color Brush::getColor(int x, int y) {
-	return colors[x][y];
+    return colors[x][y];
 }
 
 bool Brush::checkInside(int x, int y, int xStart, int yStart, int zoom) {
