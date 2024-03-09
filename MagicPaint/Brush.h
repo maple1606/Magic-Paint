@@ -10,11 +10,13 @@
 class Brush {
 public:
 	Brush(Color** colors);
-	void setColor(int x, int y, Color color);
+	void setColor(int x, int y, int zoom, Color color);
 	Color getColor(int x, int y);
 
 private:
 	Color** colors;
+	bool checkInside(int x, int y, int xStart, int yStart, int zoom);
+	void floodfill(int x, int y, int xStart, int yStart, int zoom, Color color);
 };
 
 #endif // CANVAS_H_INCLUDED

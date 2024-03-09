@@ -19,8 +19,7 @@ private:
 	Color** pixels;
 	int width, height;
 	int xOffset, yOffset, zoom;
-	void normalizeCoordinate(float x, float y);
-	float normalizedX, normalizedY, normalizedWidth, normalizedHeight;
+	void normalizeCoordinate(float x, float y, float& normalizedX, float& normalizedY, float& normalizedWidth, float& normalizedHeight);
 };
 
 #endif // CANVAS_H_INCLUDED
