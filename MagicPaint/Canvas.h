@@ -11,12 +11,16 @@
 
 class Canvas {
 public:
-	Canvas();
+	Canvas(int width, int height);
 	void display(GLFWwindow* window);
 
 private:
 	Brush* brush;
 	Color** pixels;
+	int width, height;
+	int xOffset, yOffset, zoom;
+	void normalizeCoordinate(float x, float y);
+	float normalizedX, normalizedY, normalizedWidth, normalizedHeight;
 };
 
 #endif // CANVAS_H_INCLUDED

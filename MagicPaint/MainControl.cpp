@@ -7,7 +7,10 @@ MainControl::MainControl() {
 }
 
 MainControl::~MainControl() {
+    delete window;
     window = NULL;
+    delete canvas;
+    canvas = NULL;
 }
 
 bool MainControl::init() {
@@ -40,7 +43,7 @@ bool MainControl::init() {
         return false;
     }
 
-    canvas = new Canvas();
+    canvas = new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
     return true;
 }
 

@@ -10,7 +10,7 @@
 class Brush {
 public:
 	Brush(Color** colors);
-	void setColor(int x, int y, float r, float g, float b, float a);
+	void setColor(int x, int y, Color color);
 	Color getColor(int x, int y);
 
 private:
