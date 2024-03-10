@@ -16,6 +16,7 @@ Canvas::Canvas(int width, int height) {
         }
     }
     brush = new Brush(pixels);
+    colorPalette = new ColorPalette();
 }
 
 Canvas::~Canvas() {
@@ -27,9 +28,21 @@ Canvas::~Canvas() {
 
 void Canvas::display(GLFWwindow* window) {
     glfwMakeContextCurrent(window);
+    float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
+
+        // Tell OpenGL a new frame is about to begin
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        ImGui::Begin("ImGUI showtime!");
+        ImGui::Text("Hello there adventurer!");
+        ImGui::ColorEdit4("Color", color);
+        colorPalette->display();
+        ImGui::End();
 
         handleMouseMotion(window);
 
@@ -42,6 +55,9 @@ void Canvas::display(GLFWwindow* window) {
         }
 
         glEnd();
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -80,7 +96,7 @@ void Canvas::handleMouseMotion(GLFWwindow* window) {
         if (isDrawing) {
             struct Color black = { 0.0f, 0.0f, 0.0f, 1.0f };
             brush->setColor(xpos, ypos, zoom, black);
-            drawLine(previousX, previousY, canvasX, canvasY, black);
+            brush->drawLine(previousX, previousY, canvasX, canvasY, zoom, black);
         }
 
         previousX = canvasX;
@@ -90,24 +106,5 @@ void Canvas::handleMouseMotion(GLFWwindow* window) {
     }
     else {
         isDrawing = false;
-    }
-}
-
-
-void Canvas::drawLine(int x1, int y1, int x2, int y2, Color color) {
-    int dx = abs(x2 - x1);
-    int dy = abs(y2 - y1);
-    int sx = x1 < x2 ? 1 : -1;
-    int sy = y1 < y2 ? 1 : -1;
-    int err = dx - dy;
-
-    while (true) {
-        brush->setColor(x1, y1, zoom, color);
-        renderPixel(x1, y1);
-
-        if (x1 == x2 && y1 == y2) break;
-        int e2 = 2 * err;
-        if (e2 > -dy) { err -= dy; x1 += sx; }
-        if (e2 < dx) { err += dx; y1 += sy; }
     }
 }

@@ -12,7 +12,7 @@ public:
 	Brush(Color** colors);
 	void setColor(int x, int y, int zoom, Color color);
 	Color getColor(int x, int y);
-	//void drawLine(int x1, int y1, int x2, int y2, int zoom, Color color);
+	void drawLine(int x1, int y1, int x2, int y2, int zoom, Color color);
 
 private:
 	Color** colors;

@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\glew-2.2.0\include;F:\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\MagicPaint\MagicPaint\src;F:\MagicPaint\MagicPaint\include;F:\MagicPaint\imgui;F:\glew-2.2.0\include;F:\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\glew-2.2.0\include;F:\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\MagicPaint\MagicPaint\src;F:\MagicPaint\MagicPaint\include;F:\MagicPaint\imgui;F:\glew-2.2.0\include;F:\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,17 +133,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Brush.cpp" />
+    <ClCompile Include="..\imgui\imgui.cpp" />
+    <ClCompile Include="..\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="..\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\imgui\imgui_widgets.cpp" />
     <ClCompile Include="MagicPaint.cpp" />
-    <ClCompile Include="MainControl.cpp" />
-    <ClCompile Include="Canvas.cpp" />
+    <ClCompile Include="src\Brush.cpp" />
+    <ClCompile Include="src\Canvas.cpp" />
+    <ClCompile Include="src\ColorPalette.cpp" />
+    <ClCompile Include="src\MainControl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Brush.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="constant.h" />
-    <ClInclude Include="MainControl.h" />
-    <ClInclude Include="Canvas.h" />
+    <ClInclude Include="..\imgui\imconfig.h" />
+    <ClInclude Include="..\imgui\imgui.h" />
+    <ClInclude Include="..\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="..\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="..\imgui\imgui_internal.h" />
+    <ClInclude Include="..\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\imgui\imstb_truetype.h" />
+    <ClInclude Include="include\Brush.h" />
+    <ClInclude Include="include\Canvas.h" />
+    <ClInclude Include="include\Color.h" />
+    <ClInclude Include="include\ColorPalette.h" />
+    <ClInclude Include="include\constant.h" />
+    <ClInclude Include="include\MainControl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
