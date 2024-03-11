@@ -11,16 +11,18 @@
 #include "Brush.h"
 #include "Color.h"
 
-#define PALETTE_ROWS 3
+#define PALETTE_ROWS 1
 #define PALETTE_COLS 1
 
 class ColorPalette {
 public:
 	ColorPalette();
 	void display();
+	Color getSelectedColor();
 
 private:
-	ImVec4 paletteColors[PALETTE_ROWS][PALETTE_COLS];
+	ImVec4 colorPalette;
+	Color selectedColor;
 };
 
 #endif // COLORPALETTE_H_INCLUDED

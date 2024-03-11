@@ -4,24 +4,45 @@
 
 Brush::Brush(Color** colors) {
     this->colors = colors;
+    brushSize = 3.0f;
+    currentSizeIndex = 0;
 }
 
-void Brush::setColor(int x, int y, int zoom, Color color) {
-    struct Color newColor = { color.r, color.g, color.b, color.a };
-    colors[x][y] = newColor;
-    floodfill(x, y, x, y, zoom, color);
+Brush::~Brush() {
+    delete[] colors;
+    colors = NULL;
 }
 
-Color Brush::getColor(int x, int y) {
+void Brush::setBrushColor(Color color) {
+    this->brushColor = color;
+}
+
+void Brush::setBrushSize() {
+    const float sizes[] = { 1.0f, 3.0f, 5.0f, 8.0f };
+    ImGui::NewLine();
+    ImGui::Text("Brush Size");
+    if (ImGui::Combo("##Brush Size", &currentSizeIndex, " 1.0\0 3.0\0 5.0\0 8.0\0")) {
+        this->brushSize = sizes[currentSizeIndex];
+    }
+}
+
+void Brush::setPixelColor(int x, int y) {
+    colors[x][y] = this->brushColor;
+    floodFill(x, y, x, y);
+}
+
+Color Brush::getPixelColor(int x, int y) {
     return colors[x][y];
 }
 
-bool Brush::checkInside(int x, int y, int xStart, int yStart, int zoom) {
-    return (x >= xStart && x < xStart + zoom && y >= yStart && y < yStart + zoom);
+bool Brush::checkInside(int x, int y, int xStart, int yStart) {
+    if (x < xStart || x >= xStart + this->brushSize || y < yStart || y >= yStart + this->brushSize)
+        return false;
+    return true;
 }
 
-void Brush::floodfill(int x, int y, int xStart, int yStart, int zoom, Color color) {
-    if (!checkInside(x, y, xStart, yStart, zoom))
+void Brush::floodFill(int x, int y, int xStart, int yStart) {
+    if (!checkInside(x, y, xStart, yStart))
         return;
 
     std::queue<std::pair<int, int>> q;
@@ -37,20 +58,20 @@ void Brush::floodfill(int x, int y, int xStart, int yStart, int zoom, Color colo
         int cx = current.first;
         int cy = current.second;
 
-        colors[cx][cy] = color;
+        colors[cx][cy] = this->brushColor;
 
         for (int i = 0; i < 4; i++) {
             int nx = cx + dx[i];
             int ny = cy + dy[i];
 
-            if (checkInside(nx, ny, xStart, yStart, zoom) && colors[nx][ny] != color) {
+            if (checkInside(nx, ny, xStart, yStart) && colors[nx][ny] != this->brushColor) {
                 q.push({ nx, ny });
             }
         }
     }
 }
 
-void Brush::drawLine(int x1, int y1, int x2, int y2, int zoom, Color color) {
+void Brush::drawLine(int x1, int y1, int x2, int y2) {
     int dx = abs(x2 - x1);
     int dy = abs(y2 - y1);
     int sx = x1 < x2 ? 1 : -1;
@@ -58,7 +79,7 @@ void Brush::drawLine(int x1, int y1, int x2, int y2, int zoom, Color color) {
     int err = dx - dy;
 
     while (true) {
-        setColor(x1, y1, zoom, color);
+        setPixelColor(x1, y1);
 
         if (x1 == x2 && y1 == y2) break;
         int e2 = 2 * err;

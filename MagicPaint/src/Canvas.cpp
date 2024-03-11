@@ -17,13 +17,22 @@ Canvas::Canvas(int width, int height) {
     }
     brush = new Brush(pixels);
     colorPalette = new ColorPalette();
+    fillTool = new FillTool();
 }
 
 Canvas::~Canvas() {
     for (int x = 0; x < width; x++) {
         delete[] pixels[x];
+        pixels[x] = NULL;
     }
     delete[] pixels;
+    pixels = NULL;
+    delete brush;
+    brush = NULL;
+    delete colorPalette;
+    colorPalette = NULL;
+    delete fillTool;
+    fillTool = NULL;
 }
 
 void Canvas::display(GLFWwindow* window) {
@@ -40,8 +49,10 @@ void Canvas::display(GLFWwindow* window) {
 
         ImGui::Begin("ImGUI showtime!");
         ImGui::Text("Hello there adventurer!");
-        ImGui::ColorEdit4("Color", color);
+        brush->setBrushSize();
+        fillTool->display();
         colorPalette->display();
+        brush->setBrushColor(colorPalette->getSelectedColor());
         ImGui::End();
 
         handleMouseMotion(window);
@@ -65,7 +76,6 @@ void Canvas::display(GLFWwindow* window) {
 }
 
 void Canvas::renderPixel(int x, int y) {
-    pixels[x][y] = brush->getColor(x, y);
     float normalizedX, normalizedY, normalizedWidth, normalizedHeight;
     x = static_cast<float>(x);
     y = static_cast<float>(y);
@@ -87,22 +97,33 @@ void Canvas::normalizeCoordinate(float x, float y, float& normalizedX, float& no
 }
 
 void Canvas::handleMouseMotion(GLFWwindow* window) {
+    if (ImGui::IsAnyItemActive()) {
+        isDrawing = false; // Disable drawing if interacting with ImGui UI
+        return;
+    }
+
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
         double xpos, ypos;
         glfwGetCursorPos(window, &xpos, &ypos);
         int canvasX = static_cast<int>(xpos);
         int canvasY = static_cast<int>(ypos);
 
-        if (isDrawing) {
-            struct Color black = { 0.0f, 0.0f, 0.0f, 1.0f };
-            brush->setColor(xpos, ypos, zoom, black);
-            brush->drawLine(previousX, previousY, canvasX, canvasY, zoom, black);
+        if (!fillTool->isEnabled()) 
+        {
+            if (isDrawing) {
+                brush->setPixelColor(xpos, ypos);
+                brush->drawLine(previousX, previousY, canvasX, canvasY);
+            }
+
+            previousX = canvasX;
+            previousY = canvasY;
+
+            isDrawing = true;
+            pixels[canvasX][canvasY] = brush->getPixelColor(canvasX, canvasY);
+        } 
+        else {
+            fillTool->fillColor(pixels, xpos, ypos, colorPalette->getSelectedColor());
         }
-
-        previousX = canvasX;
-        previousY = canvasY;
-
-        isDrawing = true;
     }
     else {
         isDrawing = false;

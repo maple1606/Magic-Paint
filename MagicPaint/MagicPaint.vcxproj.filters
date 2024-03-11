@@ -59,6 +59,9 @@
     <ClCompile Include="src\ColorPalette.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\FillTool.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\imgui\imconfig.h">
@@ -104,6 +107,9 @@
       <Filter>Header Files\include</Filter>
     </ClInclude>
     <ClInclude Include="include\ColorPalette.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FillTool.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>

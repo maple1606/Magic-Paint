@@ -144,6 +144,7 @@
     <ClCompile Include="src\Brush.cpp" />
     <ClCompile Include="src\Canvas.cpp" />
     <ClCompile Include="src\ColorPalette.cpp" />
+    <ClCompile Include="src\FillTool.cpp" />
     <ClCompile Include="src\MainControl.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="include\Color.h" />
     <ClInclude Include="include\ColorPalette.h" />
     <ClInclude Include="include\constant.h" />
+    <ClInclude Include="include\FillTool.h" />
     <ClInclude Include="include\MainControl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,16 +1,17 @@
 #include "ColorPalette.h"
 
 ColorPalette::ColorPalette() {
-    
+    struct Color black = { 0.0, 0.0, 0.0, 1.0 };
+    selectedColor = black;
+}
+
+Color ColorPalette::getSelectedColor() {
+    return selectedColor;
 }
 
 void ColorPalette::display() {
-    for (int row = 0; row < PALETTE_ROWS; ++row) {
-        for (int col = 0; col < PALETTE_COLS; ++col) {
-            ImVec4& color = paletteColors[row][col];
-            ImGui::ColorPicker3("", (float*)&color);
-            ImGui::SameLine();
-        }
-        ImGui::NewLine();
-    }
+    ImGui::NewLine();
+    ImGui::ColorPicker3("", (float*)&colorPalette);
+    struct Color newColor = { colorPalette.x, colorPalette.y, colorPalette.z, colorPalette.w };
+    selectedColor = newColor;
 }

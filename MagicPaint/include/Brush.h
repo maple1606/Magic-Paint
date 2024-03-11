@@ -2,6 +2,10 @@
 #ifndef BRUSH_H_INCLUDED
 #define BRUSH_H_INCLUDED
 
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
 #include "Color.h"
@@ -10,14 +14,20 @@
 class Brush {
 public:
 	Brush(Color** colors);
-	void setColor(int x, int y, int zoom, Color color);
-	Color getColor(int x, int y);
-	void drawLine(int x1, int y1, int x2, int y2, int zoom, Color color);
+	~Brush();
+	void setPixelColor(int x, int y);
+	Color getPixelColor(int x, int y);
+	void drawLine(int x1, int y1, int x2, int y2);
+	void setBrushColor(Color color);
+	void setBrushSize();
 
 private:
+	Color brushColor;
+	int currentSizeIndex;
+	float brushSize;
 	Color** colors;
-	bool checkInside(int x, int y, int xStart, int yStart, int zoom);
-	void floodfill(int x, int y, int xStart, int yStart, int zoom, Color color);
+	bool checkInside(int x, int y, int xStart, int yStart);
+	void floodFill(int x, int y, int xStart, int yStart);
 };
 
 #endif // CANVAS_H_INCLUDED

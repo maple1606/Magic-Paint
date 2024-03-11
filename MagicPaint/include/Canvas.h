@@ -11,6 +11,7 @@
 #include "Brush.h"
 #include "Color.h"
 #include "ColorPalette.h"
+#include "FillTool.h"
 #include "constant.h"
 #include<iostream>
 
@@ -23,6 +24,7 @@ public:
 private:
 	Brush* brush;
 	ColorPalette* colorPalette;
+	FillTool* fillTool;
 	Color** pixels;
 	int width, height, zoom;
 	bool isDrawing;
