@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\MagicPaint\MagicPaint\src;F:\MagicPaint\MagicPaint\include;F:\MagicPaint\imgui;F:\glew-2.2.0\include;F:\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\MagicPaint\MagicPaint\include\cdt;F:\MagicPaint\MagicPaint\src;F:\MagicPaint\MagicPaint\include\painttool;F:\MagicPaint\imgui;F:\glew-2.2.0\include;F:\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\MagicPaint\MagicPaint\src;F:\MagicPaint\MagicPaint\include;F:\MagicPaint\imgui;F:\glew-2.2.0\include;F:\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\MagicPaint\MagicPaint\include\cdt;F:\MagicPaint\MagicPaint\src;F:\MagicPaint\MagicPaint\include\painttool;F:\MagicPaint\imgui;F:\glew-2.2.0\include;F:\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,11 +141,12 @@
     <ClCompile Include="..\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\imgui\imgui_widgets.cpp" />
     <ClCompile Include="MagicPaint.cpp" />
-    <ClCompile Include="src\Brush.cpp" />
-    <ClCompile Include="src\Canvas.cpp" />
-    <ClCompile Include="src\ColorPalette.cpp" />
-    <ClCompile Include="src\FillTool.cpp" />
-    <ClCompile Include="src\MainControl.cpp" />
+    <ClCompile Include="src\algorithms\CDT.cpp" />
+    <ClCompile Include="src\painttool\Brush.cpp" />
+    <ClCompile Include="src\painttool\Canvas.cpp" />
+    <ClCompile Include="src\painttool\ColorPalette.cpp" />
+    <ClCompile Include="src\painttool\FillTool.cpp" />
+    <ClCompile Include="src\painttool\MainControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\imgui\imconfig.h" />
@@ -157,13 +158,15 @@
     <ClInclude Include="..\imgui\imstb_rectpack.h" />
     <ClInclude Include="..\imgui\imstb_textedit.h" />
     <ClInclude Include="..\imgui\imstb_truetype.h" />
-    <ClInclude Include="include\Brush.h" />
-    <ClInclude Include="include\Canvas.h" />
-    <ClInclude Include="include\Color.h" />
-    <ClInclude Include="include\ColorPalette.h" />
-    <ClInclude Include="include\constant.h" />
-    <ClInclude Include="include\FillTool.h" />
-    <ClInclude Include="include\MainControl.h" />
+    <ClInclude Include="include\cdt\cdt.h" />
+    <ClInclude Include="include\cdt\shapes.h" />
+    <ClInclude Include="include\painttool\Brush.h" />
+    <ClInclude Include="include\painttool\Canvas.h" />
+    <ClInclude Include="include\painttool\Color.h" />
+    <ClInclude Include="include\painttool\ColorPalette.h" />
+    <ClInclude Include="include\painttool\constant.h" />
+    <ClInclude Include="include\painttool\FillTool.h" />
+    <ClInclude Include="include\painttool\MainControl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

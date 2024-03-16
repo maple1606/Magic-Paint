@@ -30,4 +30,4 @@ private:
 	void floodFill(int x, int y, int xStart, int yStart);
 };
 
-#endif // CANVAS_H_INCLUDED
+#endif // BRUSH_H_INCLUDED

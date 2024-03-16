@@ -31,6 +31,7 @@ private:
 	int previousX, previousY;
 	void renderPixel(int x, int y);
 	void handleMouseMotion(GLFWwindow* window);
+	void displayUI();
 	void normalizeCoordinate(float x, float y, float& normalizedX, float& normalizedY, float& normalizedWidth, float& normalizedHeight);
 };
 

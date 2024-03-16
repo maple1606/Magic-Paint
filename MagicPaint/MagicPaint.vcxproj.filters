@@ -21,6 +21,18 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{f60085cd-d764-41f1-8cc8-d50c5680e712}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\include\painttool">
+      <UniqueIdentifier>{56f65202-120e-436d-9be4-30d62cd4c622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\algorithms">
+      <UniqueIdentifier>{903852a1-1b28-4496-b322-a28a84a31018}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\painttool">
+      <UniqueIdentifier>{a8c5e715-d330-4de4-918f-c1e7d052dd72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include\cdt">
+      <UniqueIdentifier>{f83787b3-1746-4be9-bd33-e43b9bec6f4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MagicPaint.cpp">
@@ -47,20 +59,23 @@
     <ClCompile Include="..\imgui\imgui_impl_opengl3.cpp">
       <Filter>Source Files\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Brush.cpp">
-      <Filter>Source Files\src</Filter>
+    <ClCompile Include="src\painttool\Brush.cpp">
+      <Filter>Source Files\src\painttool</Filter>
     </ClCompile>
-    <ClCompile Include="src\Canvas.cpp">
-      <Filter>Source Files\src</Filter>
+    <ClCompile Include="src\painttool\Canvas.cpp">
+      <Filter>Source Files\src\painttool</Filter>
     </ClCompile>
-    <ClCompile Include="src\MainControl.cpp">
-      <Filter>Source Files\src</Filter>
+    <ClCompile Include="src\painttool\ColorPalette.cpp">
+      <Filter>Source Files\src\painttool</Filter>
     </ClCompile>
-    <ClCompile Include="src\ColorPalette.cpp">
-      <Filter>Source Files\src</Filter>
+    <ClCompile Include="src\painttool\FillTool.cpp">
+      <Filter>Source Files\src\painttool</Filter>
     </ClCompile>
-    <ClCompile Include="src\FillTool.cpp">
-      <Filter>Source Files\src</Filter>
+    <ClCompile Include="src\painttool\MainControl.cpp">
+      <Filter>Source Files\src\painttool</Filter>
+    </ClCompile>
+    <ClCompile Include="src\algorithms\CDT.cpp">
+      <Filter>Source Files\src\algorithms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,26 +106,32 @@
     <ClInclude Include="..\imgui\imgui_impl_opengl3_loader.h">
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="include\Brush.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="include\painttool\Brush.h">
+      <Filter>Header Files\include\painttool</Filter>
     </ClInclude>
-    <ClInclude Include="include\Canvas.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="include\painttool\Canvas.h">
+      <Filter>Header Files\include\painttool</Filter>
     </ClInclude>
-    <ClInclude Include="include\Color.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="include\painttool\Color.h">
+      <Filter>Header Files\include\painttool</Filter>
     </ClInclude>
-    <ClInclude Include="include\constant.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="include\painttool\ColorPalette.h">
+      <Filter>Header Files\include\painttool</Filter>
     </ClInclude>
-    <ClInclude Include="include\MainControl.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="include\painttool\constant.h">
+      <Filter>Header Files\include\painttool</Filter>
     </ClInclude>
-    <ClInclude Include="include\ColorPalette.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="include\painttool\FillTool.h">
+      <Filter>Header Files\include\painttool</Filter>
     </ClInclude>
-    <ClInclude Include="include\FillTool.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="include\painttool\MainControl.h">
+      <Filter>Header Files\include\painttool</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cdt\cdt.h">
+      <Filter>Header Files\include\cdt</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cdt\shapes.h">
+      <Filter>Header Files\include\cdt</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

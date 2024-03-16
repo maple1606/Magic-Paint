@@ -42,19 +42,6 @@ void Canvas::display(GLFWwindow* window) {
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Tell OpenGL a new frame is about to begin
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-
-        ImGui::Begin("ImGUI showtime!");
-        ImGui::Text("Hello there adventurer!");
-        brush->setBrushSize();
-        fillTool->display();
-        colorPalette->display();
-        brush->setBrushColor(colorPalette->getSelectedColor());
-        ImGui::End();
-
         handleMouseMotion(window);
 
         glBegin(GL_QUADS);
@@ -67,12 +54,28 @@ void Canvas::display(GLFWwindow* window) {
 
         glEnd();
 
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        displayUI();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+}
+
+void Canvas::displayUI() {
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+    ImGui::Begin("ImGUI showtime!");
+    ImGui::Text("Hello there adventurer!");
+    brush->setBrushSize();
+    fillTool->display();
+    colorPalette->display();
+    brush->setBrushColor(colorPalette->getSelectedColor());
+    ImGui::End();
+
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void Canvas::renderPixel(int x, int y) {
@@ -98,7 +101,7 @@ void Canvas::normalizeCoordinate(float x, float y, float& normalizedX, float& no
 
 void Canvas::handleMouseMotion(GLFWwindow* window) {
     if (ImGui::IsAnyItemActive()) {
-        isDrawing = false; // Disable drawing if interacting with ImGui UI
+        isDrawing = false; // disable drawing if interacting with ImGui UI
         return;
     }
 
