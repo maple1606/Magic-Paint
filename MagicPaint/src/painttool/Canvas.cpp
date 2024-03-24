@@ -1,9 +1,4 @@
 #include "Canvas.h"
-#include <vector>
-
-using namespace std;
-
-vector <Vertex> vertices;
 
 Canvas::Canvas(int width, int height) {
     this->width = width;
@@ -20,7 +15,6 @@ Canvas::Canvas(int width, int height) {
             pixels[x][y] = white;
         }
     }
-    cdt = new CDT();
     brush = new Brush(pixels);
     colorPalette = new ColorPalette();
     fillTool = new FillTool();
@@ -76,12 +70,6 @@ void Canvas::displayUI() {
     ImGui::Text("Hello there adventurer!");
     brush->setBrushSize();
     fillTool->display();
-    cdt->display();
-   
-    if (cdt->isEnabled()) {
-        cdt->delaunayTriangulation(vertices);
-    }
-
     colorPalette->display();
     brush->setBrushColor(colorPalette->getSelectedColor());
     ImGui::End();
@@ -102,7 +90,7 @@ void Canvas::renderPixel(int x, int y) {
     glVertex2f(normalizedX, normalizedY + normalizedHeight);
 }
 
-void Canvas::normalizeCoordinate(const float x, const float y, float& normalizedX, float& normalizedY, float& normalizedWidth, float& normalizedHeight) {
+void Canvas::normalizeCoordinate(float x, float y, float& normalizedX, float& normalizedY, float& normalizedWidth, float& normalizedHeight) {
     normalizedX = (x / (float)width) * 2.0f - 1.0f;
     normalizedY = 1.0f - (y / (float)height) * 2.0f;
 
@@ -135,7 +123,6 @@ void Canvas::handleMouseMotion(GLFWwindow* window) {
 
             isDrawing = true;
             pixels[canvasX][canvasY] = brush->getPixelColor(canvasX, canvasY);
-            vertices.push_back(Vertex(xpos, ypos));
         } 
         else {
             fillTool->fillColor(pixels, xpos, ypos, colorPalette->getSelectedColor());

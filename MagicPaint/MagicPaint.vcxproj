@@ -141,7 +141,7 @@
     <ClCompile Include="..\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\imgui\imgui_widgets.cpp" />
     <ClCompile Include="MagicPaint.cpp" />
-    <ClCompile Include="src\algorithms\cdt.cpp" />
+    <ClCompile Include="src\algorithms\CDT.cpp" />
     <ClCompile Include="src\painttool\Brush.cpp" />
     <ClCompile Include="src\painttool\Canvas.cpp" />
     <ClCompile Include="src\painttool\ColorPalette.cpp" />
