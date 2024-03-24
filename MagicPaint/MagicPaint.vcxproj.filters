@@ -74,7 +74,7 @@
     <ClCompile Include="src\painttool\MainControl.cpp">
       <Filter>Source Files\src\painttool</Filter>
     </ClCompile>
-    <ClCompile Include="src\algorithms\CDT.cpp">
+    <ClCompile Include="src\algorithms\cdt.cpp">
       <Filter>Source Files\src\algorithms</Filter>
     </ClCompile>
   </ItemGroup>
