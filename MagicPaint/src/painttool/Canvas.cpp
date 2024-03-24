@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector <Vertex> vertices;
+vector<Vertex> vertices;
 
 Canvas::Canvas(int width, int height) {
     this->width = width;
@@ -79,7 +79,13 @@ void Canvas::displayUI() {
     cdt->display();
    
     if (cdt->isEnabled()) {
-        cdt->delaunayTriangulation(vertices);
+        vector<Triangle> meshes;
+        meshes = cdt->triangulate(vertices);
+        for (const auto& m : meshes) {
+            brush->drawLine(m.v1.x, m.v1.y, m.v2.x, m.v2.y);
+            brush->drawLine(m.v2.x, m.v2.y, m.v3.x, m.v3.y);
+            brush->drawLine(m.v3.x, m.v3.y, m.v1.x, m.v1.y);
+        }
     }
 
     colorPalette->display();
@@ -117,13 +123,18 @@ void Canvas::handleMouseMotion(GLFWwindow* window) {
         return;
     }
 
+    if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
+        isDrawing = false; // Disable drawing if hovering over ImGui UI
+        return;
+    }
+
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
         double xpos, ypos;
         glfwGetCursorPos(window, &xpos, &ypos);
         int canvasX = static_cast<int>(xpos);
         int canvasY = static_cast<int>(ypos);
 
-        if (!fillTool->isEnabled()) 
+        if (!fillTool->isEnabled() && !cdt->isEnabled()) 
         {
             if (isDrawing) {
                 brush->setPixelColor(xpos, ypos);
@@ -137,7 +148,7 @@ void Canvas::handleMouseMotion(GLFWwindow* window) {
             pixels[canvasX][canvasY] = brush->getPixelColor(canvasX, canvasY);
             vertices.push_back(Vertex(xpos, ypos));
         } 
-        else {
+        else if (fillTool->isEnabled()) {
             fillTool->fillColor(pixels, xpos, ypos, colorPalette->getSelectedColor());
         }
     }

@@ -3,18 +3,6 @@
 
 using namespace std;
 
-float distance(const Vertex& v1, const Vertex& v2) {
-    return sqrt((v2.x - v1.x) * (v2.x - v1.x) + (v2.y - v1.y) * (v2.y - v1.y));
-}
-
-bool inCircumcircle(const Vertex& p, const Vertex& v1, const Vertex& v2, const Vertex& v3) {
-    float d = (v1.x - v3.x) * (v2.y - v3.y) - (v2.x - v3.x) * (v1.y - v3.y);
-    float dx = (p.x - v3.x) * (v2.y - v3.y) - (v2.x - v3.x) * (p.y - v3.y);
-    float dy = (v1.x - v3.x) * (p.y - v3.y) - (p.x - v3.x) * (v1.y - v3.y);
-    float s = dx * dx + dy * dy;
-    return d * s > 0;
-}
-
 const bool CDT::isEnabled() {
     return enabled;
 }
@@ -63,12 +51,17 @@ vector<Edge> CDT::uniqueEdges(vector<Edge>& edges) {
 vector<Triangle> CDT::addVertex(Vertex vertex, vector<Triangle>& triangles) {
     vector<Edge> edges;
 
+    vector<Triangle> trianglesToRemove;
     for (auto& t : triangles) {
         if (t.inCircumCirc(vertex)) {
-            edges.push_back(Edge(t.v1, t.v2));
-            edges.push_back(Edge(t.v2, t.v3));
-            edges.push_back(Edge(t.v3, t.v1));
+            edges.emplace_back(t.v1, t.v2);
+            edges.emplace_back(t.v2, t.v3);
+            edges.emplace_back(t.v3, t.v1);
+            trianglesToRemove.push_back(t);
         }
+    }
+    for (const auto& t : trianglesToRemove) {
+        triangles.erase(remove(triangles.begin(), triangles.end(), t), triangles.end());
     }
 
     edges = uniqueEdges(edges);
@@ -80,7 +73,7 @@ vector<Triangle> CDT::addVertex(Vertex vertex, vector<Triangle>& triangles) {
     return triangles;
 }
 
-vector<Triangle> CDT::delaunayTriangulation(const vector<Vertex>& vertices) {
+vector<Triangle> CDT::triangulate(const vector<Vertex>& vertices) {
     vector<Triangle> triangles;
 
     Triangle _superTriangle = superTriangle(vertices);
@@ -97,7 +90,6 @@ vector<Triangle> CDT::delaunayTriangulation(const vector<Vertex>& vertices) {
         if (t.v1 != _superTriangle.v1 && t.v1 != _superTriangle.v2 && t.v1 != _superTriangle.v3 
             && t.v2 != _superTriangle.v1 && t.v2 != _superTriangle.v2 && t.v2 != _superTriangle.v3 
             && t.v3 != _superTriangle.v1 && t.v3 != _superTriangle.v2 && t.v3 != _superTriangle.v3) {
-            cout << t.v1.x << " " << t.v1.y << endl;
             result.push_back(t);
         }
     }

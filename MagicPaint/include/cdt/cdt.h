@@ -20,7 +20,7 @@ class CDT {
 public:
     void display();
     const bool isEnabled();
-    vector<Triangle> delaunayTriangulation(const vector<Vertex>& vertices);
+    vector<Triangle> triangulate(const vector<Vertex>& vertices);
 private:
     Triangle superTriangle(const vector<Vertex>& vertices);
 
