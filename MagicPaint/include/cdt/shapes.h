@@ -2,34 +2,69 @@
 #ifndef SHAPES_H_INCLUDED
 #define SHAPES_H_INCLUDED
 
-struct Point {
-    float x, y;
-    Point(float x_, float y_) : x(x_), y(y_) {}
+using namespace std;
 
-    bool operator==(const Point& other) const {
+struct Vertex {
+    float x, y;
+    Vertex(float x_, float y_) : x(x_), y(y_) {}
+
+    bool operator==(const Vertex& other) const {
         return x == other.x && y == other.y;
     }
 
-    bool operator!=(const Point& other) const {
+    bool operator!=(const Vertex& other) const {
         return !(*this == other);
     }
 };
 
 struct Edge {
-    Point start, end;
-    Edge(Point start_, Point end_) : start(start_), end(end_) {}
+    Vertex start, end;
+    Edge(Vertex start_, Vertex end_) : start(start_), end(end_) {}
+
+    bool operator==(const Edge& other) const {
+        return start == other.start && end == other.end;
+    }
+
+    bool operator!=(const Edge& other) const {
+        return !(*this == other);
+    }
 };
 
 struct Triangle {
-    Point p1, p2, p3;
-    Triangle(Point p1_, Point p2_, Point p3_) : p1(p1_), p2(p2_), p3(p3_) {}
+    Vertex v1, v2, v3;
+    Triangle(Vertex v1_, Vertex v2_, Vertex v3_) : v1(v1_), v2(v2_), v3(v3_) {}
 
     bool operator==(const Triangle& other) const {
-        return p1 == other.p1 && p2 == other.p2 && p3 == other.p3;
+        return v1 == other.v1 && v2 == other.v2 && v3 == other.v3;
     }
 
     bool operator!=(const Triangle& other) const {
         return !(*this == other);
+    }
+
+    pair<Vertex, float> circumCirc() {
+        float D = 2 * (v1.x * (v2.y - v3.y) + v2.x * (v3.y - v1.y) + v3.x * (v1.y - v2.y));
+
+        float centerX = ((v1.x * v1.x + v1.y * v1.y) * (v2.y - v3.y) +
+            (v2.x * v2.x + v2.y * v2.y) * (v3.y - v1.y) +
+            (v3.x * v3.x + v3.y * v3.y) * (v1.y - v2.y)) / D;
+
+        float centerY = ((v1.x * v1.x + v1.y * v1.y) * (v3.x - v2.x) +
+            (v2.x * v2.x + v2.y * v2.y) * (v1.x - v3.x) +
+            (v3.x * v3.x + v3.y * v3.y) * (v2.x - v1.x)) / D;
+
+        Vertex center(centerX, centerY);
+        float radius = sqrt((v1.x - centerX) * (v1.x - centerX) +
+                    (v1.y - centerY) * (v1.y - centerY));
+
+        return make_pair(center, radius);
+    }
+
+    bool inCircumCirc(Vertex v) {
+        pair <Vertex, float> _circumCirc = this->circumCirc();
+        float dx = _circumCirc.first.x - v.x;
+        float dy = _circumCirc.first.y - v.y;
+        return sqrt(dx * dx + dy * dy) <= _circumCirc.second;
     }
 };
 
