@@ -11,8 +11,10 @@
 #include <tuple>
 #include <cmath>
 #include <algorithm>
+#include <sstream>
 
 #include "shapes.h"
+#include "error.h"
 
 using namespace std;
 
@@ -21,6 +23,7 @@ public:
     void display();
     const bool isEnabled();
     vector<Triangle> triangulate(const vector<Vertex>& vertices);
+
 private:
     Triangle superTriangle(const vector<Vertex>& vertices);
 

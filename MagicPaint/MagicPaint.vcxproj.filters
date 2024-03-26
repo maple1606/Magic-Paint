@@ -33,6 +33,9 @@
     <Filter Include="Header Files\include\cdt">
       <UniqueIdentifier>{f83787b3-1746-4be9-bd33-e43b9bec6f4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\include\error_handlers">
+      <UniqueIdentifier>{08a34e46-c151-4e42-a989-501487acf7f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MagicPaint.cpp">
@@ -132,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="include\cdt\shapes.h">
       <Filter>Header Files\include\cdt</Filter>
+    </ClInclude>
+    <ClInclude Include="include\error_handlers\error.h">
+      <Filter>Header Files\include\error_handlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

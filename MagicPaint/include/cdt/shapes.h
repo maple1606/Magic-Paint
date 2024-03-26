@@ -2,6 +2,8 @@
 #ifndef SHAPES_H_INCLUDED
 #define SHAPES_H_INCLUDED
 
+#include <string>
+
 using namespace std;
 
 struct Vertex {
@@ -15,6 +17,10 @@ struct Vertex {
     bool operator!=(const Vertex& other) const {
         return !(*this == other);
     }
+
+    string to_string() const {
+        return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
+    }
 };
 
 struct Edge {
@@ -27,6 +33,10 @@ struct Edge {
 
     bool operator!=(const Edge& other) const {
         return !(*this == other);
+    }
+
+    string to_string() const {
+        return "[" + start.to_string() + ", " + end.to_string() + "]";
     }
 };
 
