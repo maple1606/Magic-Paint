@@ -60,6 +60,9 @@ vector<Triangle> CDT::addVertex(Vertex vertex, vector<Triangle>& triangles) {
             trianglesToRemove.push_back(t);
         }
     }
+
+    vector <Triangle> tmp = triangles;
+
     for (const auto& t : trianglesToRemove) {
         triangles.erase(remove(triangles.begin(), triangles.end(), t), triangles.end());
     }

@@ -4,6 +4,7 @@
 using namespace std;
 
 vector<Vertex> vertices;
+bool triangulationEnabled = false;
 
 Canvas::Canvas(int width, int height) {
     this->width = width;
@@ -78,9 +79,12 @@ void Canvas::displayUI() {
     fillTool->display();
     cdt->display();
    
-    if (cdt->isEnabled()) {
+    if (cdt->isEnabled() &&!triangulationEnabled) {
+        // only when CDT is triggered for the first time
+        triangulationEnabled = true;
         vector<Triangle> meshes;
         meshes = cdt->triangulate(vertices);
+       
         for (const auto& m : meshes) {
             brush->drawLine(m.v1.x, m.v1.y, m.v2.x, m.v2.y);
             brush->drawLine(m.v2.x, m.v2.y, m.v3.x, m.v3.y);
@@ -136,8 +140,8 @@ void Canvas::handleMouseMotion(GLFWwindow* window) {
 
         if (!fillTool->isEnabled() && !cdt->isEnabled()) 
         {
+            brush->setPixelColor(xpos, ypos);
             if (isDrawing) {
-                brush->setPixelColor(xpos, ypos);
                 brush->drawLine(previousX, previousY, canvasX, canvasY);
             }
 

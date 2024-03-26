@@ -43,15 +43,15 @@ struct Triangle {
     }
 
     pair<Vertex, float> circumCirc() {
-        float D = 2 * (v1.x * (v2.y - v3.y) + v2.x * (v3.y - v1.y) + v3.x * (v1.y - v2.y));
 
-        float centerX = ((v1.x * v1.x + v1.y * v1.y) * (v2.y - v3.y) +
-            (v2.x * v2.x + v2.y * v2.y) * (v3.y - v1.y) +
-            (v3.x * v3.x + v3.y * v3.y) * (v1.y - v2.y)) / D;
+        float D = 4 * (v1.x - v2.x) * (v1.y - v3.y) - 4 * (v1.x - v3.x) * (v1.y - v2.y);
+        float Dx = 2 * (v1.x * v1.x + v1.y * v1.y - v2.x * v2.x - v2.y * v2.y) * (v1.y - v3.y)
+            - 2 * (v1.x * v1.x + v1.y * v1.y - v3.x * v3.x - v3.y * v3.y) * (v1.y - v2.y);
+        float Dy = 2 * (v1.x * v1.x + v1.y * v1.y - v3.x * v3.x - v3.y * v3.y) * (v1.x - v2.x)
+            - 2 * (v1.x * v1.x + v1.y * v1.y - v2.x * v2.x - v2.y * v2.y) * (v1.x - v3.x);
 
-        float centerY = ((v1.x * v1.x + v1.y * v1.y) * (v3.x - v2.x) +
-            (v2.x * v2.x + v2.y * v2.y) * (v1.x - v3.x) +
-            (v3.x * v3.x + v3.y * v3.y) * (v2.x - v1.x)) / D;
+        float centerX = Dx / D;
+        float centerY = Dy / D;
 
         Vertex center(centerX, centerY);
         float radius = sqrt((v1.x - centerX) * (v1.x - centerX) +
@@ -64,6 +64,7 @@ struct Triangle {
         pair <Vertex, float> _circumCirc = this->circumCirc();
         float dx = _circumCirc.first.x - v.x;
         float dy = _circumCirc.first.y - v.y;
+        
         return sqrt(dx * dx + dy * dy) <= _circumCirc.second;
     }
 };
